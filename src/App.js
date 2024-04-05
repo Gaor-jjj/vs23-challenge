@@ -2,6 +2,7 @@ import Header from './components/Header';
 import Meals from './components/Meals';
 import CartContext from './store/CartContext';
 import React, { useReducer } from 'react';
+import Modal from './components/UI/Modal';
 
 const cartReducer = (state, action) => {
   switch (action.type) {

@@ -12,7 +12,6 @@ const MealItem = (props) => {
 
     const addToCartHandler = () => {
         addItemToCart(props.meal);
-        console.log("Cart contents after adding item:", cart)
     };
 
     useEffect(() => {
