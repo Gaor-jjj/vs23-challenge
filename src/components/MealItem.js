@@ -1,10 +1,20 @@
+import { useContext } from 'react';
 import Button from './UI/Button';
+import CartContext from '../store/CartContext';
 
 const MealItem = (props) => {
     const currencyFormat = new Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: 'EUR',
     });
+
+     const { addItem, cart } = useContext(CartContext);
+
+     const addToCartHandler = () => {
+         addItem(props.meal);
+         console.log("Cart contents after adding item:", [...cart, props.meal])
+     };
+
     return (
         <li className="meal-item">
             <article>
@@ -15,7 +25,7 @@ const MealItem = (props) => {
                     <p className="meal-item-description">{props.meal.description}</p>
                 </div>
                 <p className="meal-item-actions"> 
-                    <Button textOnly={false} children={'Add to Cart'}/>
+                    <Button onClick={addToCartHandler} textOnly={false} children={'Add to Cart'}/>
                 </p>
             </article>
         </li>
