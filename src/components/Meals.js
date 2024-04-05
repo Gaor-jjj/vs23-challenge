@@ -1,6 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import MealItem from './MealItem';
 
 const Meals = () => {
+    const[mealsData, setMealsData] = useState([]); 
+
     useEffect(() => {
         const fetchMeals = async () => {
           try {
@@ -9,7 +12,7 @@ const Meals = () => {
               throw new Error('Failed to fetch meals');
             }
             const mealsData = await response.json();
-            console.log('Meals Data:', mealsData);
+            setMealsData(mealsData);
           } catch (error) {
             console.error('Error fetching meals:', error);
           }
@@ -20,9 +23,9 @@ const Meals = () => {
 
     return (
         <ul id="meals">
-            { 
-                // list of meals
-            }
+            {mealsData.map(meal => (
+                <MealItem key={meal.id} meal={meal} />
+            ))}
         </ul>
     )
 }
